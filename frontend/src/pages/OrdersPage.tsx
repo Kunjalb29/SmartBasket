@@ -1,195 +1,162 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Package, ChevronRight, CheckCircle, Truck, Clock, X, RotateCcw, Search, Filter } from 'lucide-react'
-import { orders } from '@/data/mockData'
+import { Package, ChevronRight, Download, RefreshCw, Search } from 'lucide-react'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { Badge } from '@/components/ui/Badge'
-import { formatCurrency, formatDate, formatRelativeTime } from '@/lib/utils'
+import { SearchBar } from '@/components/ui/SearchBar'
+import { EmptyState } from '@/components/ui/EmptyState'
+import { Button } from '@/components/ui/Button'
+import { formatCurrency } from '@/lib/utils'
+import { formatDate } from '@/lib/formatters'
+import { ORDER_STATUS_CONFIG } from '@/lib/constants'
 
-const statusConfig: Record<string, { label: string; color: 'violet' | 'cyan' | 'emerald' | 'amber' | 'rose' | 'slate'; icon: React.ReactNode }> = {
-  pending: { label: 'Pending', color: 'amber', icon: <Clock className="w-3.5 h-3.5" /> },
-  confirmed: { label: 'Confirmed', color: 'cyan', icon: <CheckCircle className="w-3.5 h-3.5" /> },
-  processing: { label: 'Processing', color: 'violet', icon: <Package className="w-3.5 h-3.5" /> },
-  shipped: { label: 'Shipped', color: 'cyan', icon: <Truck className="w-3.5 h-3.5" /> },
-  delivered: { label: 'Delivered', color: 'emerald', icon: <CheckCircle className="w-3.5 h-3.5" /> },
-  cancelled: { label: 'Cancelled', color: 'rose', icon: <X className="w-3.5 h-3.5" /> },
-  refunded: { label: 'Refunded', color: 'slate', icon: <RotateCcw className="w-3.5 h-3.5" /> },
+type OrderStatus = keyof typeof ORDER_STATUS_CONFIG
+
+interface Order {
+  id: string
+  orderNumber: string
+  status: OrderStatus
+  total: number
+  itemCount: number
+  placedAt: string
+  items: Array<{ name: string; thumbnail: string; quantity: number; price: number }>
 }
 
-const statusSteps = ['pending', 'confirmed', 'processing', 'shipped', 'delivered']
+const mockOrders: Order[] = [
+  {
+    id: '1',
+    orderNumber: '#SB-A1B2C3D4',
+    status: 'DELIVERED',
+    total: 67.34,
+    itemCount: 5,
+    placedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+    items: [
+      { name: 'Organic Avocado', thumbnail: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=60', quantity: 2, price: 5.99 },
+      { name: 'Greek Yogurt', thumbnail: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=60', quantity: 1, price: 6.49 },
+    ],
+  },
+  {
+    id: '2',
+    orderNumber: '#SB-E5F6G7H8',
+    status: 'SHIPPED',
+    total: 124.50,
+    itemCount: 8,
+    placedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+    items: [
+      { name: 'Wild Caught Salmon', thumbnail: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=60', quantity: 2, price: 12.99 },
+      { name: 'Organic Spinach', thumbnail: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=60', quantity: 3, price: 4.99 },
+    ],
+  },
+  {
+    id: '3',
+    orderNumber: '#SB-I9J0K1L2',
+    status: 'PROCESSING',
+    total: 43.15,
+    itemCount: 3,
+    placedAt: new Date().toISOString(),
+    items: [
+      { name: 'Whole Grain Oats', thumbnail: 'https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=60', quantity: 1, price: 8.99 },
+    ],
+  },
+]
 
 export const OrdersPage: React.FC = () => {
-  const [filter, setFilter] = useState('all')
   const [search, setSearch] = useState('')
-  const [expandedOrder, setExpandedOrder] = useState<string | null>(null)
+  const [expanded, setExpanded] = useState<string | null>(null)
 
-  const filtered = orders.filter(o => {
-    if (filter !== 'all' && o.status !== filter) return false
-    if (search && !o.id.includes(search) && !o.items.some(i => i.productName.toLowerCase().includes(search.toLowerCase()))) return false
-    return true
-  })
+  const filtered = mockOrders.filter(o =>
+    o.orderNumber.toLowerCase().includes(search.toLowerCase()) ||
+    o.status.toLowerCase().includes(search.toLowerCase())
+  )
 
   return (
-    <div className="p-6 max-w-[1200px] mx-auto">
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
-        <h1 className="text-2xl font-bold font-display text-slate-100">Order History</h1>
-        <p className="text-slate-400 mt-1">Track and manage your orders</p>
-      </motion.div>
+    <div className="p-6 max-w-4xl mx-auto">
+      <PageHeader
+        title="My Orders"
+        description="Track and manage your order history"
+        actions={
+          <Button variant="secondary" size="sm" icon={<RefreshCw className="w-4 h-4" />}>
+            Refresh
+          </Button>
+        }
+      />
 
-      {/* Filter Bar */}
-      <div className="flex flex-wrap gap-3 mb-6">
-        <div className="relative flex-1 min-w-48">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search orders..." className="input-glass pl-10 w-full" />
-        </div>
-        <div className="flex gap-2 flex-wrap">
-          {['all', 'processing', 'shipped', 'delivered', 'cancelled'].map(s => (
-            <button key={s} onClick={() => setFilter(s)} className={`px-3 py-2 rounded-xl text-xs font-medium capitalize transition-all ${filter === s ? 'bg-violet-600 text-white' : 'bg-white/5 text-slate-400 hover:text-slate-200'}`}>{s}</button>
-          ))}
-        </div>
-      </div>
+      {/* Search */}
+      <SearchBar value={search} onChange={setSearch} placeholder="Search by order number or status..." className="mb-5" />
 
-      {/* Orders Stats */}
-      <div className="grid grid-cols-4 gap-3 mb-6">
+      {/* Order Stats */}
+      <div className="grid grid-cols-3 gap-4 mb-5">
         {[
-          { label: 'Total Orders', value: orders.length, color: 'violet' },
-          { label: 'Processing', value: orders.filter(o => o.status === 'processing').length, color: 'amber' },
-          { label: 'Delivered', value: orders.filter(o => o.status === 'delivered').length, color: 'emerald' },
-          { label: 'Total Spent', value: formatCurrency(orders.reduce((s, o) => s + o.total, 0)), color: 'cyan' },
-        ].map((s, i) => (
-          <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="glass-card p-4 text-center">
-            <p className={`text-xl font-bold font-display ${s.color === 'violet' ? 'text-violet-400' : s.color === 'amber' ? 'text-amber-400' : s.color === 'emerald' ? 'text-emerald-400' : 'text-cyan-400'}`}>{s.value}</p>
-            <p className="text-xs text-slate-400 mt-0.5">{s.label}</p>
-          </motion.div>
+          { label: 'Total Orders', value: mockOrders.length, color: '#7c3aed' },
+          { label: 'Delivered', value: mockOrders.filter(o => o.status === 'DELIVERED').length, color: '#10b981' },
+          { label: 'In Progress', value: mockOrders.filter(o => ['PROCESSING', 'SHIPPED', 'CONFIRMED'].includes(o.status)).length, color: '#06b6d4' },
+        ].map(s => (
+          <div key={s.label} className="glass-card p-4 text-center">
+            <p className="text-2xl font-bold font-display" style={{ color: s.color }}>{s.value}</p>
+            <p className="text-xs text-slate-500 mt-0.5">{s.label}</p>
+          </div>
         ))}
       </div>
 
       {/* Orders List */}
       {filtered.length === 0 ? (
-        <div className="text-center py-16">
-          <Package className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <p className="text-slate-400">No orders found</p>
-        </div>
+        <EmptyState icon={<Package />} title="No orders found" description="Your order history will appear here." />
       ) : (
-        <div className="space-y-4">
-          {filtered.map((order, i) => {
-            const statusCfg = statusConfig[order.status] ?? statusConfig.pending
-            const isExpanded = expandedOrder === order.id
-            const stepIdx = statusSteps.indexOf(order.status)
-
+        <div className="space-y-3">
+          {filtered.map(order => {
+            const config = ORDER_STATUS_CONFIG[order.status]
+            const isExpanded = expanded === order.id
             return (
               <motion.div
                 key={order.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
+                layout
                 className="glass-card overflow-hidden"
               >
                 {/* Order Header */}
-                <div
-                  className="flex items-center gap-4 p-5 cursor-pointer hover:bg-white/[0.02] transition-colors"
-                  onClick={() => setExpandedOrder(isExpanded ? null : order.id)}
+                <button
+                  onClick={() => setExpanded(isExpanded ? null : order.id)}
+                  className="w-full p-4 flex items-center gap-4 text-left hover:bg-white/[0.02] transition-colors"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0">
-                    <Package className="w-6 h-6 text-violet-400" />
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0" style={{ background: `${config.color}15` }}>
+                    {config.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <span className="font-bold text-slate-200 text-sm">{order.id.toUpperCase()}</span>
-                      <Badge variant={statusCfg.color} icon={statusCfg.icon}>{statusCfg.label}</Badge>
+                    <div className="flex items-center gap-2">
+                      <p className="font-semibold text-slate-200 text-sm">{order.orderNumber}</p>
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded-full" style={{ color: config.color, background: `${config.color}15` }}>
+                        {config.label}
+                      </span>
                     </div>
-                    <p className="text-xs text-slate-500 mt-0.5">
-                      {order.items.length} items · {formatDate(order.createdAt)} · {order.paymentMethod}
-                    </p>
+                    <p className="text-xs text-slate-500 mt-0.5">{order.itemCount} items · Placed {formatDate(order.placedAt, 'relative')}</p>
                   </div>
-                  <div className="text-right">
-                    <p className="font-bold text-slate-100">{formatCurrency(order.total)}</p>
-                    <p className="text-xs text-slate-500">{formatRelativeTime(order.createdAt)}</p>
+                  <div className="text-right flex-shrink-0">
+                    <p className="font-bold text-emerald-400">{formatCurrency(order.total)}</p>
+                    <ChevronRight className={`w-4 h-4 text-slate-500 transition-transform ml-auto mt-1 ${isExpanded ? 'rotate-90' : ''}`} />
                   </div>
-                  <ChevronRight className={`w-4 h-4 text-slate-500 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
-                </div>
+                </button>
 
-                {/* Expanded Content */}
+                {/* Expanded Details */}
                 {isExpanded && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    className="border-t border-white/[0.06] p-5 space-y-5"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="px-4 pb-4 border-t border-white/[0.06] pt-4"
                   >
-                    {/* Progress Steps */}
-                    {order.status !== 'cancelled' && order.status !== 'refunded' && (
-                      <div className="relative">
-                        <div className="flex items-center justify-between">
-                          {statusSteps.map((step, i) => {
-                            const done = i <= stepIdx
-                            const active = i === stepIdx
-                            return (
-                              <div key={step} className="flex flex-col items-center gap-1 flex-1">
-                                <div className={`w-6 h-6 rounded-full flex items-center justify-center border-2 transition-all ${done ? 'bg-violet-600 border-violet-600' : 'bg-transparent border-slate-700'}`}>
-                                  {done && <CheckCircle className="w-3.5 h-3.5 text-white" />}
-                                </div>
-                                <span className={`text-[10px] capitalize text-center ${done ? 'text-violet-400' : 'text-slate-600'}`}>{step}</span>
-                              </div>
-                            )
-                          })}
-                        </div>
-                        <div className="absolute top-3 left-0 right-0 h-px bg-slate-800 -z-10" />
-                        <div className="absolute top-3 left-0 h-px bg-violet-600 -z-10 transition-all duration-700" style={{ width: `${(stepIdx / (statusSteps.length - 1)) * 100}%` }} />
-                      </div>
-                    )}
-
-                    {/* Items */}
-                    <div>
-                      <h4 className="text-sm font-semibold text-slate-200 mb-3">Order Items</h4>
-                      <div className="space-y-2">
-                        {order.items.map(item => (
-                          <div key={item.id} className="flex items-center gap-3 py-2">
-                            <img src={item.productImage} alt={item.productName} className="w-10 h-10 rounded-lg object-cover flex-shrink-0" />
-                            <div className="flex-1">
-                              <p className="text-sm text-slate-200">{item.productName}</p>
-                              <p className="text-xs text-slate-500">Qty: {item.quantity} × {formatCurrency(item.unitPrice)}</p>
-                            </div>
-                            <p className="text-sm font-semibold text-slate-200">{formatCurrency(item.totalPrice)}</p>
+                    <div className="space-y-2 mb-4">
+                      {order.items.map((item, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <img src={item.thumbnail} alt={item.name} className="w-10 h-10 rounded-lg object-cover" />
+                          <div className="flex-1">
+                            <p className="text-sm text-slate-300">{item.name}</p>
+                            <p className="text-xs text-slate-500">×{item.quantity}</p>
                           </div>
-                        ))}
-                      </div>
+                          <p className="text-sm font-semibold text-slate-300">{formatCurrency(item.price * item.quantity)}</p>
+                        </div>
+                      ))}
                     </div>
-
-                    {/* Summary + Tracking */}
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <h4 className="text-sm font-semibold text-slate-200 mb-2">Order Summary</h4>
-                        {[
-                          { label: 'Subtotal', value: formatCurrency(order.subtotal) },
-                          { label: 'Discount', value: `-${formatCurrency(order.discount)}`, color: 'text-emerald-400' },
-                          { label: 'Tax', value: formatCurrency(order.tax) },
-                          { label: 'Delivery', value: order.deliveryFee === 0 ? 'FREE' : formatCurrency(order.deliveryFee), color: order.deliveryFee === 0 ? 'text-emerald-400' : undefined },
-                        ].map(({ label, value, color }) => (
-                          <div key={label} className="flex justify-between text-xs">
-                            <span className="text-slate-400">{label}</span>
-                            <span className={color ?? 'text-slate-200'}>{value}</span>
-                          </div>
-                        ))}
-                        <div className="flex justify-between text-sm font-bold pt-1.5 border-t border-white/[0.06] mt-1.5">
-                          <span className="text-slate-200">Total</span>
-                          <span className="text-slate-100">{formatCurrency(order.total)}</span>
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-semibold text-slate-200 mb-2">Delivery Details</h4>
-                        {order.trackingNumber && (
-                          <p className="text-xs text-violet-400 mb-1">Tracking: {order.trackingNumber}</p>
-                        )}
-                        <p className="text-xs text-slate-400">{order.deliveryAddress.name}</p>
-                        <p className="text-xs text-slate-400">{order.deliveryAddress.street}</p>
-                        <p className="text-xs text-slate-400">{order.deliveryAddress.city}, {order.deliveryAddress.state} {order.deliveryAddress.zipCode}</p>
-                        {order.estimatedDelivery && (
-                          <p className="text-xs text-emerald-400 mt-2">
-                            {order.actualDelivery ? '✅ Delivered: ' : '📅 Est: '}
-                            {formatDate(order.actualDelivery ?? order.estimatedDelivery)}
-                          </p>
-                        )}
-                      </div>
+                    <div className="flex gap-3">
+                      <Button size="sm" variant="secondary" icon={<Download className="w-3.5 h-3.5" />}>Invoice</Button>
+                      <Button size="sm" variant="secondary" icon={<RefreshCw className="w-3.5 h-3.5" />}>Reorder</Button>
                     </div>
                   </motion.div>
                 )}
