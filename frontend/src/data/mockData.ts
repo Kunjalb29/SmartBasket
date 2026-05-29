@@ -564,3 +564,26 @@ export const spendingData = [
   { category: 'Pantry', amount: 43.10, budget: 60 },
   { category: 'Snacks', amount: 25.93, budget: 40 },
 ]
+
+// ============================================
+// ADMIN STATS
+// ============================================
+export const adminStats = [
+  { label: 'Total Users', value: '16,842', change: '+18.3%', color: 'violet' },
+  { label: 'Monthly Revenue', value: '$104K', change: '+16.7%', color: 'cyan' },
+  { label: 'Active Orders', value: '2,847', change: '+12.3%', color: 'emerald' },
+  { label: 'Products Listed', value: '4,281', change: '+8.2%', color: 'amber' },
+]
+
+// ============================================
+// ADMIN USERS
+// ============================================
+export const adminUsers = [
+  { id: 'user-001', name: 'Alex Johnson', email: 'alex.johnson@example.com', role: 'USER', isActive: true, avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alex', createdAt: '2024-01-15T10:00:00Z' },
+  { id: 'user-002', name: 'Sarah Chen', email: 'sarah.chen@example.com', role: 'USER', isActive: true, avatar: '', createdAt: '2024-02-20T08:30:00Z' },
+  { id: 'user-003', name: 'Marcus Williams', email: 'marcus.w@example.com', role: 'VENDOR', isActive: true, avatar: '', createdAt: '2024-03-10T14:00:00Z' },
+  { id: 'user-004', name: 'Priya Patel', email: 'priya.patel@example.com', role: 'USER', isActive: false, avatar: '', createdAt: '2024-04-05T09:00:00Z' },
+  { id: 'user-005', name: 'Jake Torres', email: 'jake.t@example.com', role: 'ADMIN', isActive: true, avatar: '', createdAt: '2023-12-01T12:00:00Z' },
+  { id: 'user-006', name: 'Emily Rodriguez', email: 'emily.r@example.com', role: 'USER', isActive: true, avatar: '', createdAt: '2024-05-18T11:30:00Z' },
+  { id: 'user-007', name: 'David Kim', email: 'david.kim@example.com', role: 'VENDOR', isActive: true, avatar: '', createdAt: '2024-06-22T07:45:00Z' },
+]
