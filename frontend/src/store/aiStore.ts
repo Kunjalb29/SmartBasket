@@ -2,21 +2,36 @@ import { create } from 'zustand'
 import type { AIMessage } from '@/types'
 
 const MOCK_RESPONSES: Record<string, string> = {
-  default: "I'm SmartBasket AI, your personal shopping assistant! I can help you find products, analyze nutrition, compare prices, and build healthy shopping lists. What can I help you with today?",
-  nutrition: "Based on your health goals and current diet tracking, I recommend increasing your fiber intake. Products like **Organic Spinach**, **Whole Grain Oats**, and **Avocados** would be excellent additions to your cart. Would you like me to add them?",
-  budget: "Looking at your spending this month ($287.43 of $400 budget), you have $112.57 remaining. I've found 5 products on your usual list that are currently on sale — switching to those could save you an estimated $23.40!",
-  recommendation: "Based on your purchase history and health profile, I highly recommend **Wild Caught Atlantic Salmon** (96/100 AI score). It's rich in omega-3s, aligns with your heart health goal, and is currently 24% off!",
-  calories: "Today you've consumed approximately 1,820 calories against your 2,000 calorie goal. You have room for a healthy snack — I'd suggest **Greek Yogurt with Berries** (~150 cal) or a handful of almonds (~165 cal).",
-  compare: "Comparing **Organic Avocado** options: FreshFarm Pack of 4 ($5.99, health score 92) vs. Whole Foods 365 Pack of 3 ($4.99, health score 88). The FreshFarm option offers better value per avocado and a higher health score!",
+  default: "I'm **Basket AI**, your personal smart shopping assistant! I can help you find products, check supermarket aisle locations, analyze nutrition content, retrieve 6-month price history trends, and match cheaper organic alternatives. Try asking me:\n\n• *'Where are the avocados?'*\n• *'What is the price history of eggs?'*\n• *'Compare organic honey prices'*",
+  
+  location: "📍 **Supermarket Aisle Directory**:\n\n• 🥑 **Organic Avocados & Fresh Produce**: Located in **Aisle 1** (Right entrance).\n• 🥬 **Organic Spinach & Fresh Herbs**: Located in **Aisle 2** (Vegetable chilled racks).\n• 🥛 **Plain Greek Yogurt & Dairy Products**: Located in **Aisle 4** (Chilled Dairy Wall).\n• 🍞 **Fresh Bakery & Healthy Sourdough**: Located in **Aisle 5** (Bakery Counter).\n• 🌾 **Whole Grain Oats & Chia Seeds**: Located in **Aisle 7** (Bulk dry bins).\n• 🍯 **Raw Organic Honey & Sweeteners**: Located in **Aisle 8** (Spreads & Baking).\n• 🐟 **Wild Caught Atlantic Salmon**: Located in **Aisle 12** (Frozen Seafood case).\n\nIf you are currently inside a SmartBasket affiliated store, I can also provide a detailed path mapping direct to the shelves!",
+  
+  price: "💰 **Real-time Price Scraping & Match Logs**:\n\n• 🥑 **Organic Avocados (Pack of 3)**: **$3.89** (Store Brand, Aisle 1) vs. **$4.99** (Whole Foods 365, Aisle 1). Saving: **$1.10** (22%).\n• 🥛 **Plain Greek Yogurt (0% Fat, 32oz)**: **$3.99** (Store Brand, Aisle 4) vs. **$6.49** (Chobani Name Brand, Aisle 4). Saving: **$2.50** (38%).\n• 🍯 **Organic Raw Honey (16oz)**: **$5.49** (Store Brand, Aisle 8) vs. **$8.99** (Imported Brand, Aisle 8). Saving: **$3.50** (39%).\n• 🐟 **Wild Caught Atlantic Salmon (per lb)**: **$12.99** (Aisle 12, on sale) vs. **$16.99** (Original). Saving: **$4.00** (24%).\n\nBy clicking **'Optimize Cart'**, I can instantly swap these high-priced items in your cart to save you an average of **34%** on your overall bill!",
+  
+  history: "📈 **6-Month Historical Pricing Index & Trends**:\n\n• 🥚 **Grade A Eggs (Dozen)**: Dropped by **12%** since February due to stabilized feed logistics. Current base price is **$2.89**.\n• 🥑 **Avocados**: Prices are seasonal. Currently at a 3-month low (down **15%**) due to summer harvest influxes. It's a great time to buy!\n• 🌾 **Organic Grains & Wheat**: Up slightly (+**4.8%** since March) due to global raw commodity indices. Buying in bulk in **Aisle 7** is recommended to hedge inflation.\n• 🥛 **Fresh Dairy Wall**: Very stable, maintaining a minor +**1.2%** index change over the past six months.\n\nSmartBasket tracks these trends daily so you can choose optimal buying windows!",
+  
+  nutrition: "🥗 **Smart Nutrition & Ingredient Swap Panel**:\n\n• **Protein Booster**: Swap high-sodium processed sausages (Health Score: 28) for **Wild Caught Salmon** (Health Score: 94) to get rich Omega-3 fatty acids.\n• **Sugar Reduction**: Swap strawberry-flavored yogurts (contains 18g added cane sugar) for **Plain Greek Yogurt** (Health Score: 94, 0g added sugar) and sweeten naturally with organic honey.\n• **High Fiber**: Add **Chia Seeds** (Aisle 7, 5g of prebiotic fiber per tbsp) to your morning oatmeal to optimize digestion and blood glucose responses.",
+  
+  budget: "📊 **Your Monthly Budget Analytics Summary**:\n\n• **Total spent this month**: **$287.43** of **$400.00** limit.\n• **Remaining balance**: **$112.57** (8.5 days left in current cycle).\n• **Price audits saved**: You have saved **$23.40** by utilizing AI-vetted brand substitutions this month alone!\n• **Optimized projection**: If you keep swapping to store brands, your projected spent for next month is only **$242.00**, saving you an extra **$45.00**!",
 }
 
 function getAIResponse(message: string): string {
   const lower = message.toLowerCase()
-  if (lower.includes('nutrition') || lower.includes('healthy') || lower.includes('fiber') || lower.includes('vitamin')) return MOCK_RESPONSES.nutrition
-  if (lower.includes('budget') || lower.includes('spend') || lower.includes('money') || lower.includes('cheap')) return MOCK_RESPONSES.budget
-  if (lower.includes('recommend') || lower.includes('suggest') || lower.includes('best')) return MOCK_RESPONSES.recommendation
-  if (lower.includes('calori') || lower.includes('intake') || lower.includes('eat')) return MOCK_RESPONSES.calories
-  if (lower.includes('compare') || lower.includes('vs') || lower.includes('versus') || lower.includes('difference')) return MOCK_RESPONSES.compare
+  if (lower.includes('location') || lower.includes('aisle') || lower.includes('where') || lower.includes('find') || lower.includes('avocado') || lower.includes('spinach') || lower.includes('salmon') || lower.includes('honey')) {
+    return MOCK_RESPONSES.location
+  }
+  if (lower.includes('price') || lower.includes('cost') || lower.includes('how much') || lower.includes('cheap') || lower.includes('save') || lower.includes('compare')) {
+    return MOCK_RESPONSES.price
+  }
+  if (lower.includes('history') || lower.includes('trend') || lower.includes('past') || lower.includes('index') || lower.includes('egg') || lower.includes('inflation')) {
+    return MOCK_RESPONSES.history
+  }
+  if (lower.includes('nutrition') || lower.includes('health') || lower.includes('fiber') || lower.includes('protein') || lower.includes('sugar') || lower.includes('diet') || lower.includes('calorie')) {
+    return MOCK_RESPONSES.nutrition
+  }
+  if (lower.includes('budget') || lower.includes('limit') || lower.includes('spent') || lower.includes('month') || lower.includes('dollar')) {
+    return MOCK_RESPONSES.budget
+  }
   return MOCK_RESPONSES.default
 }
 
@@ -35,7 +50,7 @@ const initialMessages: AIMessage[] = [
   {
     id: 'msg-000',
     role: 'assistant',
-    content: "👋 Hi! I'm **Basket AI**, your personal smart shopping assistant. I can help you:\n\n• 🛒 Find the best products\n• 🥗 Analyze nutrition\n• 💰 Track your budget\n• 📊 Compare prices\n• 🏃 Meet health goals\n\nWhat can I help you with today?",
+    content: "👋 Hi! I'm **Basket AI**, your smart shopping co-pilot. I am fully equipped with supermarket coordinates, price matching records, and 6-month historical indices.\n\nAsk me anything like:\n\n• 📍 *'Where is the Greek yogurt located?'*\n• 💰 *'How much can I save by swapping brand-name oats?'*\n• 📈 *'Tell me the price trends of eggs and produce'*",
     timestamp: new Date().toISOString(),
   },
 ]
@@ -55,8 +70,8 @@ export const useAIStore = create<AIStore>((set, get) => ({
 
     set((state) => ({ messages: [...state.messages, userMsg], isTyping: true }))
 
-    // Simulate AI thinking delay
-    await new Promise((resolve) => setTimeout(resolve, 800 + Math.random() * 1200))
+    // Simulate thinking delay
+    await new Promise((resolve) => setTimeout(resolve, 600 + Math.random() * 800))
 
     const aiResponse = getAIResponse(content)
     const aiMsg: AIMessage = {

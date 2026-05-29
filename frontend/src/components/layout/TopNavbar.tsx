@@ -14,7 +14,7 @@ import { formatRelativeTime } from '@/lib/utils'
 import { cn } from '@/lib/utils'
 
 export const TopNavbar: React.FC = () => {
-  const { theme, toggleTheme, notifications, notificationPanelOpen, toggleNotificationPanel, markAllRead, markNotificationRead, getUnreadCount, toggleSidebar } = useUIStore()
+  const { theme, toggleTheme, notifications, notificationPanelOpen, toggleNotificationPanel, markAllRead, markNotificationRead, getUnreadCount, toggleSidebar, sidebarCollapsed } = useUIStore()
   const { user, logout } = useAuthStore()
   const { getTotalItems } = useCartStore()
   const { openChat } = useAIStore()
@@ -47,7 +47,10 @@ export const TopNavbar: React.FC = () => {
   }
 
   return (
-    <header className="top-navbar left-0 w-full h-16 px-4 flex items-center justify-between gap-4">
+    <header className={cn(
+      "top-navbar right-0 h-16 px-6 flex items-center justify-between gap-4 transition-all duration-300",
+      sidebarCollapsed ? 'md:left-[72px] left-0' : 'md:left-64 left-0'
+    )}>
       {/* Left: Hamburger + Search */}
       <div className="flex items-center gap-3 flex-1">
         <button
@@ -83,14 +86,14 @@ export const TopNavbar: React.FC = () => {
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
-                className="absolute top-full mt-2 left-0 right-0 glass-card p-2 z-50 border border-violet-500/20"
+                className="absolute top-full mt-2 left-0 right-0 glass-card p-2 z-50 border border-emerald-500/20"
               >
                 <p className="text-xs text-slate-500 px-2 py-1">Press Enter to search for "{searchQuery}"</p>
                 <button
                   onClick={() => { navigate(`/products?q=${searchQuery}`); setSearchFocused(false) }}
                   className="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 text-left"
                 >
-                  <Search className="w-4 h-4 text-violet-400" />
+                  <Search className="w-4 h-4 text-emerald-400" />
                   <span className="text-sm text-slate-300">Search for <strong>"{searchQuery}"</strong></span>
                   <ChevronRight className="w-4 h-4 text-slate-500 ml-auto" />
                 </button>
@@ -105,7 +108,7 @@ export const TopNavbar: React.FC = () => {
         {/* AI Assistant Quick Button */}
         <button
           onClick={openChat}
-          className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-violet-500/10 border border-violet-500/20 hover:bg-violet-500/20 transition-all text-violet-400 text-sm font-medium"
+          className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/25 hover:bg-emerald-500/20 transition-all text-emerald-500 dark:text-emerald-400 text-sm font-medium"
         >
           <Bot className="w-4 h-4" />
           <span className="hidden md:block">Ask AI</span>
@@ -141,11 +144,11 @@ export const TopNavbar: React.FC = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 8, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
-                className="absolute right-0 top-12 w-80 glass-card z-50 overflow-hidden border border-violet-500/20"
+                className="absolute right-0 top-12 w-80 glass-card z-50 overflow-hidden border border-emerald-500/20"
               >
                 <div className="flex items-center justify-between p-4 border-b border-white/[0.06]">
                   <h3 className="font-semibold text-sm text-slate-200">Notifications</h3>
-                  <button onClick={markAllRead} className="text-xs text-violet-400 hover:text-violet-300">
+                  <button onClick={markAllRead} className="text-xs text-emerald-400 hover:text-emerald-300">
                     Mark all read
                   </button>
                 </div>
@@ -156,7 +159,7 @@ export const TopNavbar: React.FC = () => {
                       onClick={() => markNotificationRead(n.id)}
                       className={cn(
                         'w-full flex items-start gap-3 p-3.5 hover:bg-white/5 transition-colors text-left border-b border-white/[0.03]',
-                        !n.read && 'bg-violet-500/[0.04]'
+                        !n.read && 'bg-emerald-500/[0.04]'
                       )}
                     >
                       <span className="text-lg flex-shrink-0">{notifIcons[n.type] ?? '🔔'}</span>
@@ -168,7 +171,7 @@ export const TopNavbar: React.FC = () => {
                         <p className="text-[10px] text-slate-600 mt-1">{formatRelativeTime(n.createdAt)}</p>
                       </div>
                       {!n.read && (
-                        <span className="w-2 h-2 rounded-full bg-violet-500 flex-shrink-0 mt-1" />
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0 mt-1" />
                       )}
                     </button>
                   ))}
@@ -177,7 +180,7 @@ export const TopNavbar: React.FC = () => {
                   <Link
                     to="/settings"
                     onClick={toggleNotificationPanel}
-                    className="w-full text-center text-xs text-violet-400 hover:text-violet-300 block"
+                    className="w-full text-center text-xs text-emerald-400 hover:text-emerald-300 block"
                   >
                     View all notifications →
                   </Link>
@@ -214,7 +217,7 @@ export const TopNavbar: React.FC = () => {
                 initial={{ opacity: 0, y: 8, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                className="absolute right-0 top-12 w-52 glass-card z-50 p-1.5 border border-violet-500/20"
+                className="absolute right-0 top-12 w-52 glass-card z-50 p-1.5 border border-emerald-500/20"
               >
                 <div className="px-3 py-2 border-b border-white/[0.06] mb-1">
                   <p className="text-xs font-semibold text-slate-200">{user?.name}</p>

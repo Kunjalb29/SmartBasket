@@ -1,6 +1,8 @@
 # SmartBasket 🛒
 
 > **AI-Powered Smart Shopping Platform** — A production-grade enterprise web application for modern smart retail.
+> 
+> 🌐 **Live Vercel Production Link**: [https://frontend-blue-mu-35.vercel.app](https://frontend-blue-mu-35.vercel.app)
 
 <!-- ============================================================ -->
 <!--                    BADGES ROW 1 — STATUS                     -->

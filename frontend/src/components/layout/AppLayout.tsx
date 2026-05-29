@@ -13,7 +13,7 @@ export const AppLayout: React.FC = () => {
   const location = useLocation()
 
   return (
-    <div className="min-h-screen bg-[rgb(10,14,26)] flex">
+    <div className="min-h-screen bg-base flex">
       {/* Sidebar */}
       <Sidebar />
 
@@ -52,16 +52,16 @@ export const AppLayout: React.FC = () => {
         position="bottom-right"
         toastOptions={{
           style: {
-            background: 'rgba(26, 31, 53, 0.95)',
-            color: '#f1f5f9',
-            border: '1px solid rgba(124, 58, 237, 0.3)',
+            background: 'rgba(var(--bg-card), 0.95)',
+            color: 'rgb(var(--text-primary))',
+            border: '1px solid rgba(16, 185, 129, 0.3)',
             backdropFilter: 'blur(20px)',
           },
           success: {
-            iconTheme: { primary: '#10b981', secondary: '#0a0e1a' },
+            iconTheme: { primary: '#10b981', secondary: 'rgb(var(--bg-base))' },
           },
           error: {
-            iconTheme: { primary: '#ef4444', secondary: '#0a0e1a' },
+            iconTheme: { primary: '#ef4444', secondary: 'rgb(var(--bg-base))' },
           },
         }}
       />

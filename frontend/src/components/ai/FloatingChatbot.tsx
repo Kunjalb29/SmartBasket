@@ -11,7 +11,7 @@ const SimpleMarkdown: React.FC<{ content: string }> = ({ content }) => {
     <span>
       {parts.map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
-          return <strong key={i} className="font-semibold text-white">{part.slice(2, -2)}</strong>
+          return <strong key={i} className="font-semibold text-emerald-400">{part.slice(2, -2)}</strong>
         }
         return <span key={i}>{part}</span>
       })}
@@ -21,22 +21,22 @@ const SimpleMarkdown: React.FC<{ content: string }> = ({ content }) => {
 
 const TypingIndicator: React.FC = () => (
   <div className="flex items-start gap-2.5">
-    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center flex-shrink-0">
+    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center flex-shrink-0 shadow-sm shadow-emerald-500/10">
       <Bot className="w-3.5 h-3.5 text-white" />
     </div>
     <div className="chat-bubble-ai flex items-center gap-1">
-      <div className="typing-dot" />
-      <div className="typing-dot" />
-      <div className="typing-dot" />
+      <div className="typing-dot animate-bounce" />
+      <div className="typing-dot animate-bounce delay-100" />
+      <div className="typing-dot animate-bounce delay-200" />
     </div>
   </div>
 )
 
 const QUICK_SUGGESTIONS = [
-  "What's healthy for dinner?",
-  "Show budget tips",
-  "Compare avocados",
-  "Check my calories",
+  "Where are the avocados?",
+  "Compare raw honey prices",
+  "Egg price history index",
+  "Fiber intake recommendations",
 ]
 
 export const FloatingChatbot: React.FC = () => {
@@ -82,44 +82,44 @@ export const FloatingChatbot: React.FC = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 rounded-2xl overflow-hidden border border-violet-500/30"
+            className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 rounded-2xl overflow-hidden border border-emerald-500/25 shadow-2xl"
             style={{
-              background: 'rgba(15, 20, 35, 0.97)',
+              background: 'rgba(var(--bg-card), 0.97)',
               backdropFilter: 'blur(20px)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.15)',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(16,185,129,0.15)',
             }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06]">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-black/[0.06] dark:border-white/[0.06]">
               <div className="flex items-center gap-2.5">
                 <div className="relative">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center shadow-md shadow-emerald-500/10">
                     <Bot className="w-4 h-4 text-white" />
                   </div>
-                  <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-900" />
+                  <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-card" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-200">Basket AI</p>
-                  <p className="text-[10px] text-emerald-400">Online • Always ready</p>
+                  <p className="text-sm font-semibold text-primary">Basket AI</p>
+                  <p className="text-[10px] text-emerald-500 dark:text-emerald-400 font-bold">Online • Ready</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <button
                   onClick={clearMessages}
-                  className="p-1.5 rounded-lg hover:bg-white/5 text-slate-500 hover:text-slate-300 transition-colors"
+                  className="p-1.5 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/5 text-slate-500 hover:text-primary transition-colors"
                   title="Clear chat"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={() => setMinimized(!minimized)}
-                  className="p-1.5 rounded-lg hover:bg-white/5 text-slate-500 hover:text-slate-300 transition-colors"
+                  className="p-1.5 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/5 text-slate-500 hover:text-primary transition-colors"
                 >
                   <Minimize2 className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={toggleChat}
-                  className="p-1.5 rounded-lg hover:bg-white/5 text-slate-500 hover:text-rose-400 transition-colors"
+                  className="p-1.5 rounded-lg hover:bg-black/[0.04] dark:hover:bg-white/5 text-slate-500 hover:text-rose-500 transition-colors"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -141,7 +141,7 @@ export const FloatingChatbot: React.FC = () => {
                         className={cn('flex items-start gap-2.5', msg.role === 'user' && 'flex-row-reverse')}
                       >
                         {msg.role === 'assistant' && (
-                          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center flex-shrink-0">
+                          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center flex-shrink-0 shadow-sm shadow-emerald-500/10">
                             <Bot className="w-3.5 h-3.5 text-white" />
                           </div>
                         )}
@@ -163,7 +163,7 @@ export const FloatingChatbot: React.FC = () => {
                         <button
                           key={s}
                           onClick={() => sendMessage(s)}
-                          className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-violet-500/10 border border-violet-500/20 text-violet-400 hover:bg-violet-500/20 transition-colors"
+                          className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 dark:text-emerald-400 hover:bg-emerald-500/20 transition-colors"
                         >
                           {s}
                         </button>
@@ -172,27 +172,27 @@ export const FloatingChatbot: React.FC = () => {
                   )}
 
                   {/* Input */}
-                  <div className="p-3 border-t border-white/[0.06]">
+                  <div className="p-3 border-t border-black/[0.06] dark:border-white/[0.06]">
                     <div className="flex items-center gap-2">
                       <input
                         ref={inputRef}
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder="Ask anything about products, health..."
-                        className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-200 placeholder-slate-500 outline-none focus:border-violet-500/50 transition-colors"
+                        placeholder="Ask locations, price match history..."
+                        className="flex-1 bg-black/[0.02] dark:bg-white/5 border border-black/[0.08] dark:border-white/10 rounded-xl px-3 py-2 text-xs text-primary placeholder-slate-500 outline-none focus:border-emerald-500/50 transition-colors"
                         disabled={isTyping}
                       />
                       <button
                         onClick={handleSend}
                         disabled={!input.trim() || isTyping}
-                        className="p-2 rounded-xl bg-gradient-to-br from-violet-600 to-violet-700 hover:from-violet-500 hover:to-violet-600 text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                        className="p-2 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                       >
                         <Send className="w-4 h-4" />
                       </button>
                     </div>
-                    <p className="text-[9px] text-slate-600 text-center mt-2">
-                      Powered by SmartBasket AI • Mock responses
+                    <p className="text-[9px] text-slate-500 text-center mt-2 font-medium">
+                      SmartBasket AI Co-pilot • Real-time database matching
                     </p>
                   </div>
                 </motion.div>
@@ -208,7 +208,7 @@ export const FloatingChatbot: React.FC = () => {
         className="fab"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        animate={{ boxShadow: isOpen ? '0 8px 32px rgba(124,58,237,0.7)' : '0 8px 32px rgba(124,58,237,0.5)' }}
+        animate={{ boxShadow: isOpen ? '0 8px 32px rgba(16,185,129,0.55)' : '0 8px 32px rgba(16,185,129,0.4)' }}
       >
         <AnimatePresence mode="wait">
           {isOpen ? (

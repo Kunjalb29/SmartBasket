@@ -54,19 +54,29 @@ export const Sidebar: React.FC = () => {
               transition={{ duration: 0.2 }}
               className="flex items-center gap-2.5"
             >
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center flex-shrink-0">
-                <Zap className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/10">
+                <svg viewBox="0 0 24 24" fill="none" className="w-4.5 h-4.5 text-white" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 10H22L19.5 20C19.2 21 18.2 21.8 17.2 21.8H6.8C5.8 21.8 4.8 21 4.5 20L2 10Z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M12 4C14.5 4 16.5 6 16.5 8.5C16.5 11 12 15 12 15C12 15 7.5 11 7.5 8.5C7.5 6 9.5 4 12 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="12" cy="8.5" r="1.5" fill="currentColor" />
+                  <path d="M18.5 2L19 3.5L20.5 4L19 4.5L18.5 6L18 4.5L16.5 4L18 3.5L18.5 2Z" fill="currentColor" />
+                </svg>
               </div>
               <div>
-                <span className="font-bold text-sm font-display gradient-text">SmartBasket</span>
+                <span className="font-bold text-sm font-display text-primary">SmartBasket</span>
                 <p className="text-[10px] text-slate-500 leading-none">AI Shopping</p>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
         {sidebarCollapsed && (
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center mx-auto">
-            <Zap className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center mx-auto shadow-md shadow-emerald-500/10">
+            <svg viewBox="0 0 24 24" fill="none" className="w-4.5 h-4.5 text-white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 10H22L19.5 20C19.2 21 18.2 21.8 17.2 21.8H6.8C5.8 21.8 4.8 21 4.5 20L2 10Z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M12 4C14.5 4 16.5 6 16.5 8.5C16.5 11 12 15 12 15C12 15 7.5 11 7.5 8.5C7.5 6 9.5 4 12 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="12" cy="8.5" r="1.5" fill="currentColor" />
+              <path d="M18.5 2L19 3.5L20.5 4L19 4.5L18.5 6L18 4.5L16.5 4L18 3.5L18.5 2Z" fill="currentColor" />
+            </svg>
           </div>
         )}
         {!sidebarCollapsed && (
@@ -114,12 +124,12 @@ export const Sidebar: React.FC = () => {
                     )}
                   </AnimatePresence>
                   {item.badge && cartCount > 0 && !sidebarCollapsed && (
-                    <span className="w-5 h-5 rounded-full bg-violet-600 text-white text-[10px] font-bold flex items-center justify-center">
+                    <span className="w-5 h-5 rounded-full bg-emerald-500 text-black text-[10px] font-extrabold flex items-center justify-center">
                       {cartCount > 9 ? '9+' : cartCount}
                     </span>
                   )}
                   {item.badge && cartCount > 0 && sidebarCollapsed && (
-                    <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-violet-600 text-white text-[9px] font-bold flex items-center justify-center">
+                    <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 text-black text-[9px] font-extrabold flex items-center justify-center">
                       {cartCount > 9 ? '9+' : cartCount}
                     </span>
                   )}
