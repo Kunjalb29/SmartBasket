@@ -2,6 +2,9 @@
 
 > **AI-Powered Smart Shopping Platform** — A production-grade enterprise web application for modern smart retail.
 
+<!-- ============================================================ -->
+<!--                    BADGES ROW 1 — STATUS                     -->
+<!-- ============================================================ -->
 <p align="center">
   <a href="https://github.com/Kunjalb29/SmartBasket/stargazers">
     <img src="https://img.shields.io/github/stars/Kunjalb29/SmartBasket?style=for-the-badge&logo=github&color=7c3aed&labelColor=1a1f35" alt="GitHub Stars"/>
@@ -9,28 +12,48 @@
   <a href="https://github.com/Kunjalb29/SmartBasket/network/members">
     <img src="https://img.shields.io/github/forks/Kunjalb29/SmartBasket?style=for-the-badge&logo=github&color=06b6d4&labelColor=1a1f35" alt="GitHub Forks"/>
   </a>
-  <a href="https://github.com/Kunjalb29/SmartBasket/archive/refs/heads/main.zip">
-    <img src="https://img.shields.io/badge/⬇_Download-ZIP-10b981?style=for-the-badge&labelColor=1a1f35" alt="Download ZIP"/>
+  <a href="https://github.com/Kunjalb29/SmartBasket/watchers">
+    <img src="https://img.shields.io/github/watchers/Kunjalb29/SmartBasket?style=for-the-badge&logo=github&color=10b981&labelColor=1a1f35" alt="Watchers"/>
   </a>
   <a href="https://github.com/Kunjalb29/SmartBasket/commits/main">
-    <img src="https://img.shields.io/github/commit-activity/t/Kunjalb29/SmartBasket?style=for-the-badge&color=f59e0b&labelColor=1a1f35&label=Total%20Commits" alt="Total Commits"/>
+    <img src="https://img.shields.io/github/commit-activity/t/Kunjalb29/SmartBasket?style=for-the-badge&color=f59e0b&labelColor=1a1f35&label=Commits" alt="Total Commits"/>
   </a>
-  <a href="https://github.com/Kunjalb29/SmartBasket/graphs/traffic">
-    <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&labelColor=1a1f35" alt="License"/>
+  <img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&labelColor=1a1f35" alt="License"/>
+</p>
+
+<!-- ============================================================ -->
+<!--              BADGES ROW 2 — DOWNLOAD COUNTERS                -->
+<!-- ============================================================ -->
+<p align="center">
+  <a href="https://github.com/Kunjalb29/SmartBasket/archive/refs/heads/main.zip">
+    <img src="https://img.shields.io/github/downloads/Kunjalb29/SmartBasket/total?style=for-the-badge&logo=github&color=7c3aed&labelColor=1a1f35&label=Total%20Downloads" alt="Total Downloads"/>
+  </a>
+  <a href="https://github.com/Kunjalb29/SmartBasket">
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FKunjalb29%2FSmartBasket&count_bg=%237c3aed&title_bg=%231a1f35&icon=github.svg&icon_color=%23ffffff&title=Visitors+Today+%2F+Total&edge_flat=false" alt="Visitor Counter"/>
+  </a>
+  <a href="https://github.com/Kunjalb29/SmartBasket">
+    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.github.com%2Frepos%2FKunjalb29%2FSmartBasket&query=%24.watchers_count&label=People%20Watching&color=ec4899&labelColor=1a1f35&style=for-the-badge" alt="Watchers Count"/>
   </a>
 </p>
 
+<!-- ============================================================ -->
+<!--              BADGES ROW 3 — REPO METADATA                    -->
+<!-- ============================================================ -->
 <p align="center">
   <img src="https://img.shields.io/github/repo-size/Kunjalb29/SmartBasket?style=flat-square&color=7c3aed&label=Repo%20Size" alt="Repo Size"/>
   <img src="https://img.shields.io/github/last-commit/Kunjalb29/SmartBasket?style=flat-square&color=10b981&label=Last%20Updated" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/languages/top/Kunjalb29/SmartBasket?style=flat-square&color=06b6d4" alt="Top Language"/>
   <img src="https://img.shields.io/github/issues/Kunjalb29/SmartBasket?style=flat-square&color=f59e0b&label=Open%20Issues" alt="Issues"/>
-  <img src="https://img.shields.io/badge/version-2.0.0-violet?style=flat-square" alt="Version"/>
+  <img src="https://img.shields.io/github/release/Kunjalb29/SmartBasket?style=flat-square&color=10b981&label=Latest%20Version" alt="Release"/>
   <img src="https://img.shields.io/badge/build-passing-brightgreen?style=flat-square" alt="Build"/>
 </p>
 
+<!-- ============================================================ -->
+<!--                    DOWNLOAD CTA LINKS                        -->
+<!-- ============================================================ -->
 <p align="center">
   <a href="https://github.com/Kunjalb29/SmartBasket/archive/refs/heads/main.zip">
-    <strong>⬇️ Download Project (ZIP)</strong>
+    <strong>⬇️ Download ZIP (Free)</strong>
   </a>
   &nbsp;·&nbsp;
   <a href="https://github.com/Kunjalb29/SmartBasket">
@@ -39,6 +62,10 @@
   &nbsp;·&nbsp;
   <a href="https://github.com/Kunjalb29/SmartBasket/fork">
     <strong>🍴 Fork this Project</strong>
+  </a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/Kunjalb29/SmartBasket/graphs/traffic">
+    <strong>📈 View Traffic Stats</strong>
   </a>
 </p>
 
@@ -66,32 +93,34 @@ SmartBasket is a full-stack AI-powered shopping assistant platform that helps us
 
 ## ⬇️ Download & Install
 
-> **Anyone can download and run this project for free!**
+> 🎉 **This project is 100% open-source and free to download!**
 
-### Option 1 — Download ZIP (No Git required)
+### 📥 Method 1 — One-Click ZIP Download *(No Git required)*
 
-1. Click the button below to download the project as a ZIP file:
+<p align="center">
+  <a href="https://github.com/Kunjalb29/SmartBasket/archive/refs/heads/main.zip">
+    <img src="https://img.shields.io/badge/⬇%20Download%20SmartBasket%20ZIP-Click%20Here-7c3aed?style=for-the-badge&labelColor=1a1f35" alt="Download ZIP"/>
+  </a>
+</p>
 
-   **👉 [Download SmartBasket ZIP](https://github.com/Kunjalb29/SmartBasket/archive/refs/heads/main.zip)**
-
-2. Extract the ZIP to a folder on your computer
-3. Follow the [Quick Start](#-quick-start) steps below
+**Steps:**
+1. Click the button above → a `.zip` file downloads automatically
+2. Extract the ZIP to any folder
+3. Follow the [Quick Start](#-quick-start) steps below ✅
 
 ---
 
-### Option 2 — Clone with Git
+### 💻 Method 2 — Clone with Git
 
 ```bash
-# Clone the repository
+# Clone the full repository
 git clone https://github.com/Kunjalb29/SmartBasket.git
-
-# Navigate into the project
 cd SmartBasket
 ```
 
 ---
 
-### Option 3 — GitHub CLI
+### 🔧 Method 3 — GitHub CLI
 
 ```bash
 gh repo clone Kunjalb29/SmartBasket
@@ -99,17 +128,29 @@ gh repo clone Kunjalb29/SmartBasket
 
 ---
 
-## 📊 Project Stats
+### 📦 Method 4 — Download a Specific Release
+
+Go to **[Releases →](https://github.com/Kunjalb29/SmartBasket/releases)** and download any tagged version as a ZIP or tarball.
+
+---
+
+## 📊 Download & Traffic Stats
+
+> GitHub tracks all clones, downloads, and unique visitors automatically.
+
+| Metric | Where to View |
+|--------|--------------|
+| 👥 **Unique Cloners** | [Traffic Page](https://github.com/Kunjalb29/SmartBasket/graphs/traffic) *(owner only)* |
+| 📥 **ZIP Downloads** | Counted via [Releases](https://github.com/Kunjalb29/SmartBasket/releases) |
+| 👁️ **Page Views** | Live via the **Visitors badge** above (updates on every visit) |
+| 🌍 **Referring Sites** | [Traffic → Referrers](https://github.com/Kunjalb29/SmartBasket/graphs/traffic) *(owner only)* |
+| ⭐ **Stars over time** | [Star History](https://star-history.com/#Kunjalb29/SmartBasket&Date) |
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Kunjalb29&repo=SmartBasket&show_icons=true&theme=radical&hide_border=true&bg_color=1a1f35&title_color=a78bfa&icon_color=06b6d4&text_color=94a3b8" alt="GitHub Stats"/>
+  <a href="https://star-history.com/#Kunjalb29/SmartBasket&Date">
+    <img src="https://api.star-history.com/svg?repos=Kunjalb29/SmartBasket&type=Date&theme=dark" alt="Star History Chart" width="600"/>
+  </a>
 </p>
-
-<p align="center">
-  <img src="https://img.shields.io/github/downloads/Kunjalb29/SmartBasket/total?style=for-the-badge&logo=github&color=7c3aed&labelColor=1a1f35&label=Total%20Downloads" alt="Total Downloads"/>
-</p>
-
-> 📈 **Clones and views are tracked by GitHub** — Visit the [Traffic insights](https://github.com/Kunjalb29/SmartBasket/graphs/traffic) page to see real-time stats.
 
 ---
 
@@ -125,10 +166,10 @@ gh repo clone Kunjalb29/SmartBasket
 - **react-hot-toast** — Notifications
 
 ### Backend
-- **Spring Boot 3.4** — REST API
+- **Spring Boot 3.4** — REST API (Java 21)
 - **PostgreSQL 16** — Primary database
 - **Redis 7** — Caching & sessions
-- **JWT** — Authentication
+- **JWT** — Stateless authentication
 - **Docker** — Containerization
 
 ---
@@ -138,30 +179,30 @@ gh repo clone Kunjalb29/SmartBasket
 ### Prerequisites
 - Node.js 20+
 - npm 10+
-- Git (optional — you can use ZIP download instead)
+- Git *(optional — ZIP download works without it)*
 
-### Frontend Development
+### Run the Frontend
 
 ```bash
-# Step 1: Enter the frontend folder
+# 1. Navigate to the frontend folder
 cd SmartBasket/frontend
 
-# Step 2: Install dependencies
+# 2. Install dependencies
 npm install
 
-# Step 3: Start development server
+# 3. Start development server
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser. 🎉
+Open **[http://localhost:5173](http://localhost:5173)** 🎉
 
-### Full Stack with Docker
+### Run with Docker (Full Stack)
 
 ```bash
-# Copy environment config
+# Copy environment config and set your values
 cp .env.example .env
 
-# Edit .env with your values, then start all services
+# Start all services (DB + Redis + API + Frontend)
 docker-compose up -d
 
 # View logs
@@ -174,30 +215,30 @@ docker-compose logs -f
 
 ```
 SmartBasket/
-├── frontend/          # React + Vite frontend
+├── frontend/               # React + Vite frontend
 │   ├── src/
-│   │   ├── components/    # Reusable UI components
-│   │   ├── pages/         # Route page components
-│   │   ├── store/         # Zustand state stores
-│   │   ├── hooks/         # Custom React hooks
-│   │   ├── lib/           # Utilities, services, constants
-│   │   ├── types/         # TypeScript type definitions
-│   │   └── data/          # Mock data
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/          # Route page components
+│   │   ├── store/          # Zustand state stores
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utilities, services, constants
+│   │   ├── types/          # TypeScript type definitions
+│   │   └── data/           # Mock data
 │   └── package.json
-├── backend/           # Spring Boot REST API
+├── backend/                # Spring Boot REST API
 │   ├── src/main/java/com/smartbasket/api/
-│   │   ├── controller/    # REST controllers
-│   │   ├── service/       # Business logic
-│   │   ├── model/         # JPA entities
-│   │   ├── repository/    # Data repositories
-│   │   ├── security/      # JWT auth & filters
-│   │   └── config/        # App configuration
+│   │   ├── controller/     # REST controllers (Auth, Products, Orders)
+│   │   ├── service/        # Business logic
+│   │   ├── model/          # JPA entities (User, Product, Order)
+│   │   ├── repository/     # Data repositories
+│   │   ├── security/       # JWT provider & auth filter
+│   │   └── config/         # Security, Redis, app configuration
 │   └── pom.xml
-├── database/          # SQL schemas and seed data
+├── database/               # SQL schemas and seed data
 │   ├── schema.sql
 │   └── seed.sql
-├── docker-compose.yml
-├── .env.example
+├── docker-compose.yml      # Full stack Docker setup
+├── .env.example            # Environment configuration template
 └── README.md
 ```
 
@@ -224,26 +265,28 @@ SmartBasket/
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how:
+Contributions are always welcome! 🙌
 
-1. **Fork** the project — [Fork SmartBasket](https://github.com/Kunjalb29/SmartBasket/fork)
-2. Create your feature branch: `git checkout -b feat/amazing-feature`
-3. Commit your changes: `git commit -m 'feat: add amazing feature'`
-4. Push to the branch: `git push origin feat/amazing-feature`
-5. Open a **Pull Request**
+1. **Fork** → [Fork SmartBasket](https://github.com/Kunjalb29/SmartBasket/fork)
+2. **Create a branch** → `git checkout -b feat/amazing-feature`
+3. **Commit** → `git commit -m 'feat: add amazing feature'`
+4. **Push** → `git push origin feat/amazing-feature`
+5. **Open a Pull Request** ✅
 
 ---
 
 ## 📄 License
 
-MIT License — This project is **free to download, use, modify, and distribute**.
+**MIT License** — This project is completely **free to download, use, modify, and distribute**.
 
 See [LICENSE](LICENSE) for full details.
 
 ---
 
 <p align="center">
-  <strong>⬇️ <a href="https://github.com/Kunjalb29/SmartBasket/archive/refs/heads/main.zip">Download SmartBasket Now</a> — It's Free!</strong>
+  <a href="https://github.com/Kunjalb29/SmartBasket/archive/refs/heads/main.zip">
+    <img src="https://img.shields.io/badge/⬇%20Download%20Now-Free%20%26%20Open%20Source-7c3aed?style=for-the-badge&labelColor=1a1f35" alt="Download Now"/>
+  </a>
 </p>
 
 <p align="center">Built with ❤️ by the SmartBasket Engineering Team</p>
