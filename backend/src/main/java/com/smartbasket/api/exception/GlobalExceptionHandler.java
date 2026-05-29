@@ -31,4 +31,4 @@ public class GlobalExceptionHandler {
         ErrorDetails details = new ErrorDetails(Instant.now(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(details, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-}\n
+}

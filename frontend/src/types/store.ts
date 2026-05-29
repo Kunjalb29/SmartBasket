@@ -17,4 +17,4 @@ export interface AuthStoreState {
   isAuthenticated: boolean;
   login: (user: User, token: string) => void;
   logout: () => void;
-}\n
+}

@@ -19,4 +19,4 @@ public class ProductDTO {
     private String barcode;
     private List<String> allergens;
     private boolean isOrganic;
-}\n
+}

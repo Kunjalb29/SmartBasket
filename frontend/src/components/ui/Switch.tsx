@@ -29,4 +29,4 @@ export const Switch: React.FC<SwitchProps> = ({ checked, onChange, label, descri
       </button>
     </div>
   );
-};\n
+};

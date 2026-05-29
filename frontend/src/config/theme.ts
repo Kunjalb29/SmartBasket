@@ -20,4 +20,4 @@ export const THEME_PALETTE = {
     borderLight: '#e2e8f0',
     borderDark: '#1e293b'
   }
-} as const;\n
+} as const;

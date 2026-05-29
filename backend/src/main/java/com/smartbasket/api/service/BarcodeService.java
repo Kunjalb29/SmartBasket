@@ -23,4 +23,4 @@ public class BarcodeService {
         }
         throw new RuntimeException("UPC Barcode not recognized: " + barcode);
     }
-}\n
+}

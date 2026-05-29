@@ -45,4 +45,4 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
       {children && <div className="absolute flex flex-col items-center justify-center">{children}</div>}
     </div>
   );
-};\n
+};

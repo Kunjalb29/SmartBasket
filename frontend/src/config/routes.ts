@@ -12,4 +12,4 @@ export const ROUTES = {
   ADMIN: '/admin'
 } as const;
 
-export type RoutePath = typeof ROUTES[keyof typeof ROUTES];\n
+export type RoutePath = typeof ROUTES[keyof typeof ROUTES];

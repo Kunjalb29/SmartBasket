@@ -10,4 +10,4 @@ public class AIChatResponse {
     private String response;
     private List<String> suggestedActions;
     private List<ProductDTO> recommendedProducts;
-}\n
+}

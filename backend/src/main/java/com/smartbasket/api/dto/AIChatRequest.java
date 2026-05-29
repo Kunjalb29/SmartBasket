@@ -10,4 +10,4 @@ public class AIChatRequest {
     private String message;
     private List<String> currentCartItemIds;
     private String context;
-}\n
+}

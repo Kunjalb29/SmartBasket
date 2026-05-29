@@ -32,4 +32,4 @@ export const Slider: React.FC<SliderProps> = ({ min, max, step = 1, value, onCha
       </div>
     </div>
   );
-};\n
+};

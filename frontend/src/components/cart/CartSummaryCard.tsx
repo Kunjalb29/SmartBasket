@@ -58,4 +58,4 @@ export const CartSummaryCard: React.FC<CartSummaryCardProps> = ({
       </button>
     </div>
   );
-};\n
+};

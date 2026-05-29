@@ -42,4 +42,4 @@ export const HealthScoreMetric: React.FC<HealthScoreMetricProps> = ({ score, pre
       </ProgressRing>
     </div>
   );
-};\n
+};

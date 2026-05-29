@@ -25,4 +25,4 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T 
   };
 
   return [storedValue, setValue];
-}\n
+}

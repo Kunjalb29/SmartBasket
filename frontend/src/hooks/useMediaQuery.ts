@@ -17,4 +17,4 @@ export function useMediaQuery(query: string): boolean {
   }, [matches, query]);
 
   return matches;
-}\n
+}

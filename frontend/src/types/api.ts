@@ -20,4 +20,4 @@ export interface ApiError {
   message: string;
   path: string;
   timestamp: string;
-}\n
+}

@@ -33,4 +33,4 @@ export const ChatMessageBubble: React.FC<ChatMessageBubbleProps> = ({ sender, me
       )}
     </div>
   );
-};\n
+};

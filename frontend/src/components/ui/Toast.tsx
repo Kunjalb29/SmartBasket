@@ -42,4 +42,4 @@ export const Toast: React.FC<ToastProps> = ({ id, message, type = 'info', onClos
       </button>
     </div>
   );
-};\n
+};

@@ -30,4 +30,4 @@ export const AIPromptSuggestions: React.FC<AIPromptSuggestionsProps> = ({ onSele
       </div>
     </div>
   );
-};\n
+};

@@ -14,4 +14,4 @@ export const HEALTH_THRESHOLDS = {
   MODERATE: 50,
   WARN_SODIUM: 500, // alert if single item > 500mg
   WARN_SUGAR: 15 // alert if single item > 15g
-} as const;\n
+} as const;

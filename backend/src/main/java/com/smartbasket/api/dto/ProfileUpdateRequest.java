@@ -10,4 +10,4 @@ public class ProfileUpdateRequest {
     private List<String> dietaryPreferences;
     private List<String> allergens;
     private Integer weeklyBudget;
-}\n
+}

@@ -69,4 +69,4 @@ export const ProductRow: React.FC<ProductRowProps> = ({
       </div>
     </div>
   );
-};\n
+};

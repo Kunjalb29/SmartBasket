@@ -44,4 +44,4 @@ export const CategorySpendChart: React.FC<CategorySpendChartProps> = ({ data }) 
       </ResponsiveContainer>
     </div>
   );
-};\n
+};

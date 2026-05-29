@@ -46,4 +46,4 @@ export const Accordion: React.FC<AccordionProps> = ({ items, allowMultiple = fal
       })}
     </div>
   );
-};\n
+};

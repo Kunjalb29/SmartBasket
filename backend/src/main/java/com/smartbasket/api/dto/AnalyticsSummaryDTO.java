@@ -14,4 +14,4 @@ public class AnalyticsSummaryDTO {
     private Long totalOrdersCount;
     private Map<String, BigDecimal> categorySpending;
     private Map<String, BigDecimal> healthScoreTrend;
-}\n
+}
