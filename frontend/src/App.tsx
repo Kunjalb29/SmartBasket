@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { AppLayout } from '@/components/layout/AppLayout'
@@ -9,12 +9,15 @@ import { DashboardPage } from '@/pages/DashboardPage'
 import { ProductsPage } from '@/pages/ProductsPage'
 import { ProductDetailPage } from '@/pages/ProductDetailPage'
 import { CartPage } from '@/pages/CartPage'
-import { AIAssistantPage } from '@/pages/AIAssistantPage'
+import { AssistantPage } from '@/pages/AssistantPage'
 import { NutritionPage } from '@/pages/NutritionPage'
 import { ScannerPage } from '@/pages/ScannerPage'
 import { AnalyticsPage } from '@/pages/AnalyticsPage'
 import { OrdersPage } from '@/pages/OrdersPage'
 import { SettingsPage } from '@/pages/SettingsPage'
+import { WishlistPage } from '@/pages/WishlistPage'
+import { ComparisonPage } from '@/pages/ComparisonPage'
+import { NotFoundPage } from '@/pages/NotFoundPage'
 import { AdminPage } from '@/pages/AdminPage'
 import { useAuthStore } from '@/store/authStore'
 import { useUIStore } from '@/store/uiStore'
@@ -42,6 +45,17 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            background: 'rgba(26,31,53,0.95)',
+            color: '#f8fafc',
+            border: '1px solid rgba(124,58,237,0.2)',
+            backdropFilter: 'blur(10px)',
+          },
+        }}
+      />
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />
@@ -61,12 +75,14 @@ function App() {
           <Route path="products" element={<ProductsPage />} />
           <Route path="products/:id" element={<ProductDetailPage />} />
           <Route path="cart" element={<CartPage />} />
-          <Route path="assistant" element={<AIAssistantPage />} />
+          <Route path="assistant" element={<AssistantPage />} />
           <Route path="nutrition" element={<NutritionPage />} />
           <Route path="scanner" element={<ScannerPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="orders" element={<OrdersPage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="wishlist" element={<WishlistPage />} />
+          <Route path="compare" element={<ComparisonPage />} />
 
           {/* Admin-only routes */}
           <Route
@@ -79,8 +95,8 @@ function App() {
           />
         </Route>
 
-        {/* Catch-all redirect */}
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* 404 */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )
