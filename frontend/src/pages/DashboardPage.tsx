@@ -250,7 +250,7 @@ export const DashboardPage: React.FC = () => {
               value={budgetPercent}
               color={budgetPercent > 90 ? 'rose' : budgetPercent > 70 ? 'amber' : 'emerald'}
               size="lg"
-              showValue
+              showLabel
             />
           </div>
           <div className="space-y-2">

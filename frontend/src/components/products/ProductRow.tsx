@@ -27,7 +27,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({
 
   return (
     <div className="flex flex-col sm:flex-row items-center gap-4 p-4 bg-white dark:bg-slate-900 border border-slate-150 dark:border-slate-850 rounded-2xl hover:shadow-md transition">
-      <img src={product.imageUrl} alt={product.name} className="w-20 h-20 object-cover rounded-xl bg-slate-50 dark:bg-slate-950" />
+      <img src={product.thumbnail} alt={product.name} className="w-20 h-20 object-cover rounded-xl bg-slate-50 dark:bg-slate-950" />
       <div className="flex-1 text-center sm:text-left">
         <div className="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
           <h3 className="font-semibold text-slate-800 dark:text-white">{product.name}</h3>
@@ -35,13 +35,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({
             Health: {product.healthScore}
           </span>
         </div>
-        <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">{product.brand} &bull; {product.category}</p>
-        {product.allergens && product.allergens.length > 0 && (
-          <div className="flex items-center justify-center sm:justify-start gap-1 text-[10px] text-rose-500 font-semibold mt-1.5">
-            <AlertTriangle className="w-3 h-3" />
-            <span>Contains: {product.allergens.join(', ')}</span>
-          </div>
-        )}
+        <p className="text-xs text-slate-550 dark:text-slate-500 mt-1">{product.brand} &bull; {product.category}</p>
       </div>
       <div className="flex sm:flex-col items-center sm:items-end gap-2.5">
         <span className="text-lg font-bold text-slate-800 dark:text-white">${product.price.toFixed(2)}</span>

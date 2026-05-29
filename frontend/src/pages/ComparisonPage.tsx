@@ -34,7 +34,7 @@ export const ComparisonPage: React.FC = () => {
     { label: 'Carbs', render: (p: typeof products[0]) => `${p.nutrition.totalCarbs}g`, key: 'carbs' },
     { label: 'Fat', render: (p: typeof products[0]) => `${p.nutrition.totalFat}g`, key: 'fat' },
     { label: 'Organic', render: (p: typeof products[0]) => p.isOrganic ? <Check className="w-4 h-4 text-emerald-400" /> : <Minus className="w-4 h-4 text-slate-600" />, key: 'organic' },
-    { label: 'Vegan', render: (p: typeof products[0]) => p.isVegan ? <Check className="w-4 h-4 text-emerald-400" /> : <Minus className="w-4 h-4 text-slate-600" />, key: 'vegan' },
+    { label: 'Vegan', render: (p: typeof products[0]) => p.tags.includes('vegan') ? <Check className="w-4 h-4 text-emerald-400" /> : <Minus className="w-4 h-4 text-slate-600" />, key: 'vegan' },
   ]
 
   const getBest = (key: string) => {
@@ -91,7 +91,7 @@ export const ComparisonPage: React.FC = () => {
                   <p className="text-xs text-slate-500 mb-3">{product.brand}</p>
                   <div className="flex flex-wrap gap-1 mb-3">
                     {product.isOrganic && <Badge variant="emerald" size="sm">Organic</Badge>}
-                    {product.isVegan && <Badge variant="cyan" size="sm">Vegan</Badge>}
+                    {product.tags.includes('vegan') && <Badge variant="cyan" size="sm">Vegan</Badge>}
                     {product.isOnSale && <Badge variant="rose" size="sm">Sale</Badge>}
                   </div>
                   <Button size="sm" fullWidth icon={<ShoppingCart className="w-3.5 h-3.5" />} onClick={() => { addItem(product); toast.success('Added!') }}>

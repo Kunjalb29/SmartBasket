@@ -58,7 +58,7 @@ export const SmartBarChart: React.FC<SmartBarChartProps> = ({
             color: '#f8fafc',
             fontSize: '13px',
           }}
-          formatter={(value: number) => [formatTooltip ? formatTooltip(value) : value, dataKey]}
+          formatter={(value: any) => [formatTooltip ? formatTooltip(Number(value)) : value, dataKey]}
         />
         <Bar dataKey={dataKey} radius={[4, 4, 0, 0]} maxBarSize={48}>
           {gradient

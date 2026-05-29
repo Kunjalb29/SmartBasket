@@ -46,7 +46,7 @@ export const SmartPieChart: React.FC<SmartPieChartProps> = ({
             color: '#f8fafc',
             fontSize: '13px',
           }}
-          formatter={(value: number, name: string) => [`${value}%`, name]}
+          formatter={(value: any, name: any) => [`${value}%`, name]}
         />
         {showLegend && (
           <Legend

@@ -51,7 +51,7 @@ export function useProducts({
 
     // Dietary filters
     if (filters.organic) result = result.filter(p => p.isOrganic)
-    if (filters.vegan) result = result.filter(p => p.isVegan)
+    if (filters.vegan) result = result.filter(p => p.tags.includes('vegan'))
     if (filters.onSale) result = result.filter(p => p.isOnSale)
     if (filters.minHealthScore) result = result.filter(p => p.healthScore >= (filters.minHealthScore ?? 0))
 

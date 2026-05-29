@@ -141,7 +141,7 @@ export const ScannerPage: React.FC = () => {
               <p className="text-sm text-slate-400 mb-2">{scannedProduct.brand}</p>
               <div className="flex items-center gap-2 flex-wrap">
                 {scannedProduct.isOrganic && <Badge variant="emerald" size="sm">Organic</Badge>}
-                {scannedProduct.isVegan && <Badge variant="cyan" size="sm">Vegan</Badge>}
+                {scannedProduct.tags.includes('vegan') && <Badge variant="cyan" size="sm">Vegan</Badge>}
                 {scannedProduct.isOnSale && <Badge variant="rose" size="sm">-{scannedProduct.discount}% OFF</Badge>}
               </div>
             </div>

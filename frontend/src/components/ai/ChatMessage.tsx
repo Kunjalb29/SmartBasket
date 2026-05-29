@@ -45,7 +45,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, isLatest }) =
           ? { background: 'linear-gradient(135deg, rgba(124,58,237,0.8), rgba(139,92,246,0.8))', border: '1px solid rgba(124,58,237,0.3)' }
           : { background: 'rgba(26,31,53,0.8)', border: '1px solid rgba(255,255,255,0.06)', backdropFilter: 'blur(10px)' }
         }>
-          {message.isLoading ? (
+          {message.isTyping ? (
             <div className="flex items-center gap-2">
               <Spinner variant="dots" size="xs" color="#06b6d4" />
               <span className="text-slate-400 text-xs">SmartAI is thinking...</span>
@@ -56,7 +56,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, isLatest }) =
         </div>
 
         {/* Metadata & Actions */}
-        {!message.isLoading && (
+        {!message.isTyping && (
           <div className={`flex items-center gap-2 px-1 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
             <span className="text-[10px] text-slate-600">
               {formatDate(message.timestamp, 'relative')}

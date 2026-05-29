@@ -63,8 +63,8 @@ export const SmartLineChart: React.FC<SmartLineChartProps> = ({
             color: '#f8fafc',
             fontSize: '13px',
           }}
-          formatter={(value: number, name: string) => [
-            formatTooltipValue ? formatTooltipValue(value, name) : value,
+          formatter={(value: any, name: any) => [
+            formatTooltipValue ? formatTooltipValue(Number(value), String(name)) : value,
             lines.find(l => l.key === name)?.label ?? name,
           ]}
         />

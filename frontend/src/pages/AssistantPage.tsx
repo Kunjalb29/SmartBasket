@@ -13,14 +13,14 @@ export const AssistantPage: React.FC = () => {
   const [isListening, setIsListening] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
-  const { messages, sendMessage, clearMessages, isThinking } = useAIStore()
+  const { messages, sendMessage, clearMessages, isTyping } = useAIStore()
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
   const handleSend = async () => {
-    if (!input.trim() || isThinking) return
+    if (!input.trim() || isTyping) return
     const msg = input.trim()
     setInput('')
     await sendMessage(msg)
@@ -34,8 +34,8 @@ export const AssistantPage: React.FC = () => {
   }
 
   const handleSuggestion = (suggestion: string) => {
-    const stripped = suggestion.replace(/^[\u{1F000}-\u{1FFFF}]\s/u, '').replace(/^[\x{1F000}-\x{1FFFF}]\s/u, '')
-    setInput(suggestion.replace(/^.{1,3}\s/, ''))
+    const stripped = suggestion.replace(/^[\u{1F000}-\u{1FFFF}]\s/u, '')
+    setInput(stripped)
     inputRef.current?.focus()
   }
 
@@ -125,7 +125,7 @@ export const AssistantPage: React.FC = () => {
           </div>
           <Button
             onClick={handleSend}
-            disabled={!input.trim() || isThinking}
+            disabled={!input.trim() || isTyping}
             icon={<Send className="w-4 h-4" />}
             size="md"
           >

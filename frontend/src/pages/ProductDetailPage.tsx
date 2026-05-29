@@ -68,7 +68,8 @@ export const ProductDetailPage: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <RatingStars rating={product.rating} size="md" showValue showCount reviewCount={product.reviewCount} />
+            <RatingStars rating={product.rating} size="md" showValue />
+            <span className="text-xs text-slate-500">({product.reviewCount} reviews)</span>
           </div>
 
           <div className="flex items-end gap-3">
