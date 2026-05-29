@@ -313,17 +313,25 @@ body {
 
   /* Stats Card */
   .stat-card {
-    @apply glass-card p-6 cursor-default;
+    @apply relative overflow-hidden rounded-2xl border border-white/[0.06] p-6 cursor-default;
+    background: rgba(26, 31, 53, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
   }
 
   /* Product Card */
   .product-card {
-    @apply glass-card p-0 cursor-pointer overflow-hidden;
+    @apply relative overflow-hidden rounded-2xl border border-white/[0.06] p-0 cursor-pointer;
+    background: rgba(26, 31, 53, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .product-card:hover {
-    @apply glow-violet;
+    box-shadow: 0 0 20px rgba(124,58,237,0.4), 0 0 60px rgba(124,58,237,0.1);
     transform: translateY(-4px) scale(1.01);
   }
 
