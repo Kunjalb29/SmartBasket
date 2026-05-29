@@ -21,7 +21,7 @@ export const ScannerPage: React.FC = () => {
   const [scannedProduct, setScannedProduct] = useState<typeof products[0] | null>(null)
   const [scanHistory, setScanHistory] = useState<typeof products>([])
   const { addItem } = useCartStore()
-  const intervalRef = useRef<NodeJS.Timeout>()
+  const intervalRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined)
 
   const startScan = () => {
     setScanning(true)

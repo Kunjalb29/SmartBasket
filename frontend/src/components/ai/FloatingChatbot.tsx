@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Bot, X, Send, Trash2, Sparkles, Minimize2 } from 'lucide-react'
 import { useAIStore } from '@/store/aiStore'
 import { cn } from '@/lib/utils'
-import ReactMarkdown from 'react-markdown'
 
 // Simple markdown renderer without the external library (fallback)
 const SimpleMarkdown: React.FC<{ content: string }> = ({ content }) => {

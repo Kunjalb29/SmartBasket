@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Zap, Mail, Lock, Chrome, Github, Sparkles, ArrowRight, Eye, EyeOff } from 'lucide-react'
+import { Zap, Mail, Lock, Globe, GitBranch, Sparkles, ArrowRight, Eye, EyeOff } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 import toast from 'react-hot-toast'
 
@@ -109,11 +109,11 @@ export const LoginPage: React.FC = () => {
           {/* Social Login */}
           <div className="grid grid-cols-2 gap-3 mb-6">
             <button className="flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 text-sm font-medium transition-all">
-              <Chrome className="w-4 h-4" />
+              <Globe className="w-4 h-4" />
               Google
             </button>
             <button className="flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 text-sm font-medium transition-all">
-              <Github className="w-4 h-4" />
+              <GitBranch className="w-4 h-4" />
               GitHub
             </button>
           </div>

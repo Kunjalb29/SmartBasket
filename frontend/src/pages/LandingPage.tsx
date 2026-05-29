@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useInView } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   Zap, Bot, ShoppingCart, Heart, BarChart3, Scan,
   Star, ArrowRight, CheckCircle, Shield, Truck, Clock,
@@ -17,27 +17,6 @@ const stagger = {
   animate: { transition: { staggerChildren: 0.1 } }
 }
 
-// Animated counter hook
-function useCounter(target: number, duration = 2000) {
-  const [count, setCount] = React.useState(0)
-  const ref = useRef(false)
-  const inView = useInView(useRef(null) as React.RefObject<Element>)
-
-  useEffect(() => {
-    if (inView && !ref.current) {
-      ref.current = true
-      let start = 0
-      const step = target / (duration / 16)
-      const timer = setInterval(() => {
-        start += step
-        if (start >= target) { setCount(target); clearInterval(timer) }
-        else setCount(Math.floor(start))
-      }, 16)
-    }
-  }, [inView, target, duration])
-
-  return count
-}
 
 const features = [
   { icon: Brain, title: 'AI-Powered Recommendations', description: 'Get personalized product suggestions based on your health goals, preferences, and purchase history — powered by advanced ML.', color: 'violet', gradient: 'from-violet-600/20 to-violet-600/5' },
